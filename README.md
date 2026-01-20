@@ -50,4 +50,19 @@ public void testHighRisk() {
 ## SWAGGER
 http://localhost:8090/q/swagger-ui/#
 
-## FUNZIONAMENTO
+## Query su DB:
+docker compose exec data-index-db psql -U kogito -d kogito_dataindex -c "SELECT * FROM tasks;"
+docker compose exec data-index-db psql -U kogito -d kogito_dataindex -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public';"
+
+Se fatto girare in locale:
+creare db  mydb con user quarkus e password quarkus 
+creare database kogito_dataindex con user kogito e password kogito
+Data Index: tabelle come tasks, processes, nodes, jobs, ecc. create da Quarkus/Hibernate al primo avvio del servizio Data Index.
+commentare/decommentare: QUARKUS_DATASOURCE_JDBC_URL e QUARKUS_DATASOURCE_JDBC_URL sia sotto environment che sotto data index
+
+##AVVIO DOCKER se db è interno al container:
+docker compose up -d data-index-db kafka
+docker compose up -d data-index
+docker compose up -d app task-console management-console
+
+
