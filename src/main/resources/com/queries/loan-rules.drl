@@ -1,0 +1,23 @@
+package com.queries;
+
+unit LoanUnitData;
+
+import com.model.Loan;
+
+rule "Apply simple double totalImport when quantity > 10"
+dialect "java"
+when
+    $l : Loan(quantity != null, unitPrice != null, quantity > 10) from loan
+then
+    double currentTotal = ($l.getTotalImport() != null)
+        ? $l.getTotalImport().doubleValue()
+        : ($l.getQuantity().doubleValue() * $l.getUnitPrice().doubleValue());
+    double doubled = currentTotal * 2;
+
+
+    modify($l) {
+        setTotalImport(doubled),
+        setDiscount(10),
+        setStatus("IN APPROVING");
+    };
+end
