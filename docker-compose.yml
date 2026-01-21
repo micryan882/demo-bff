@@ -9,14 +9,14 @@ services:
       QUARKUS_HTTP_HOST: 0.0.0.0
 
       # DB della tua app
-      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://db:5432/mydb
-      QUARKUS_DATASOURCE_USERNAME: quarkus
-      QUARKUS_DATASOURCE_PASSWORD: quarkus
-
-      # --- OPZIONE B: DB locale su Windows (decommenta queste righe e commenta le 3 sopra) ---
-      #QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://host.docker.internal:5432/mydb
+      #QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://db:5432/mydb
       #QUARKUS_DATASOURCE_USERNAME: quarkus
       #QUARKUS_DATASOURCE_PASSWORD: quarkus
+
+      # --- OPZIONE B: DB locale su Windows (decommenta queste righe e commenta le 3 sopra) ---
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://host.docker.internal:5432/mydb
+      QUARKUS_DATASOURCE_USERNAME: quarkus
+      QUARKUS_DATASOURCE_PASSWORD: quarkus
 
       # Data Index (per consoles) - visto dal container app (rete docker)
       KOGITO_DATAINDEX_HTTP_URL: http://data-index:8080
@@ -85,14 +85,14 @@ services:
       - "8180:8080"
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://data-index-db:5432/kogito_dataindex
-      QUARKUS_DATASOURCE_USERNAME: kogito
-      QUARKUS_DATASOURCE_PASSWORD: kogito
-
-      # --- OPZIONE B: DB locale su Windows (decommenta queste righe e commenta le 3 sopra) ---
-      #QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://host.docker.internal:5432/kogito_dataindex
+      #QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://data-index-db:5432/kogito_dataindex
       #QUARKUS_DATASOURCE_USERNAME: kogito
       #QUARKUS_DATASOURCE_PASSWORD: kogito
+
+      # --- OPZIONE B: DB locale su Windows (decommenta queste righe e commenta le 3 sopra) ---
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://host.docker.internal:5432/kogito_dataindex
+      QUARKUS_DATASOURCE_USERNAME: kogito
+      QUARKUS_DATASOURCE_PASSWORD: kogito
 
       # FIX: crea/aggiorna lo schema (tabelle processes/tasks/...)
       QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: update

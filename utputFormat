@@ -1,0 +1,5 @@
+HTTP/1.1 400 Bad Request
+content-type: application/json; charset=utf-8
+content-length: 72
+
+{"details":"Error id 21d499e7-9fa1-4361-9ac3-f3f4ce4afefb-3","stack":""}
